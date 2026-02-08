@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+
+        <div id="auth-section">
+            <div id="login-form">
+                <h2>Login</h2>
+                <input type="text" id="login-username" placeholder="Username">
+                <input type="password" id="login-password" placeholder="Password">
+                <button onclick="login()">Login</button>
+                <p>Don't have an account? <span class="link" onclick="showRegister()">Register</span></p>
+            </div>
+
+            <div id="register-form" style="display: none;">
+                <h2>Register</h2>
+                <input type="text" id="reg-username" placeholder="Username">
+                <input type="password" id="reg-password" placeholder="Password">
+                <button onclick="register()">Register</button>
+                <p>Already have an account? <span class="link" onclick="showLogin()">Login</span></p>
+            </div>
+        </div>
+
+        <div id="dashboard" style="display: none;">
+            <div class="header">
+                <h2>Welcome, <span id="username-display"></span></h2>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+
+            <div class="dashboard-controls">
+                <div class="filters">
+                    <h3>Filter by Date</h3>
+                    <input type="date" id="start-date" onchange="fetchExpenses()">
+                    <input type="date" id="end-date" onchange="fetchExpenses()">
+                </div>
+
+                <div class="budget-section">
+                    <h3>Set Budget</h3>
+                    <div class="budget-form">
+                        <input type="text" id="budget-category" placeholder="Category (e.g. Food)">
+                        <input type="number" id="budget-amount" placeholder="Limit">
+                        <button onclick="setBudget()">Set</button>
+                    </div>
+                    <div id="budget-list"></div>
+                </div>
+            </div>
+
+            <div class="charts-wrapper" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                <div class="chart-container" style="height: 300px; width: 400px;">
+                    <h3>Spending by Category</h3>
+                    <canvas id="expenseChart"></canvas>
+                </div>
+                <div class="chart-container" style="height: 300px; width: 400px;">
+                    <h3>Salary vs Expense (Bar)</h3>
+                    <canvas id="incomeExpenseChart"></canvas>
+                </div>
+                <div class="chart-container" style="height: 300px; width: 400px;">
+                    <h3>Cash Flow (Pie)</h3>
+                    <canvas id="cashFlowChart"></canvas>
+                </div>
+            </div>
+
+            <div class="add-expense">
+                <h3>Add New Transaction</h3>
+                <div class="type-toggle">
+                    <label><input type="radio" name="trans-type" value="expense" checked> Expense</label>
+                    <label><input type="radio" name="trans-type" value="income"> Income</label>
+                </div>
+                <input type="text" id="expense-title" placeholder="Title">
+                <input type="number" id="expense-amount" placeholder="Amount">
+                <input type="text" id="expense-category" placeholder="Category">
+                <label><input type="checkbox" id="is-recurring"> Recurring (Monthly)</label>
+                <button onclick="addTransaction()">Add</button>
+            </div>
+
+            <div class="expense-list">
+                <h3>History</h3>
+                <ul id="expenses-ul"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Edit -->
+    <div id="id01" class="modal">
+        <div class="modal-content">
+            <div class="container">
+                <h1>Edit Expense</h1>
+                <input type="hidden" id="edit-id">
+                <label for="edit-title"><b>Title</b></label>
+                <input type="text" placeholder="Enter Title" id="edit-title" required>
+                <label for="edit-amount"><b>Amount</b></label>
+                <input type="number" placeholder="Enter Amount" id="edit-amount" required>
+                <label for="edit-category"><b>Category</b></label>
+                <input type="text" placeholder="Enter Category" id="edit-category" required>
+                <div class="clearfix">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                        class="cancelbtn">Cancel</button>
+                    <button type="button" onclick="updateExpense()" class="deletebtn">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script src="app.js"></script>
+</body>
+
+</html>

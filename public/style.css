@@ -1,0 +1,252 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Overlay to ensure text readability if needed, though container is white */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 900px;
+}
+
+h1 {
+    text-align: center;
+    color: #1e3c72;
+}
+
+h2,
+h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2a5298;
+}
+
+.link {
+    color: #1e3c72;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.logout-btn {
+    width: auto;
+    background-color: #e57373;
+    float: right;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.cancelbtn,
+.deletebtn {
+    width: 48%;
+    margin: 1%;
+}
+
+.cancelbtn {
+    background-color: #ccc;
+    color: black;
+}
+
+.deletebtn {
+    background-color: #f44336;
+}
+
+.dashboard-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.filters,
+.budget-section,
+.add-expense,
+.expense-list {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    min-width: 300px;
+}
+
+.charts-wrapper {
+    margin: 20px 0;
+}
+
+.type-toggle {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.type-toggle label {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+li.income-item {
+    border-left: 4px solid #4CAF50;
+}
+
+li.expense-item {
+    border-left: 4px solid #f44336;
+}
+
+.budget-item {
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    height: 10px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background-color: #4CAF50;
+    height: 100%;
+    width: 0;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+.progress-fill.warning {
+    background-color: #ff9800;
+}
+
+.progress-fill.danger {
+    background-color: #f44336;
+}
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.toast {
+    background: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    min-width: 250px;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.toast.warning {
+    background: #ff9800;
+    color: #fff;
+}
+
+.toast.danger {
+    background: #f44336;
+    color: #fff;
+}
+
+.toast.success {
+    background: #4CAF50;
+    color: #fff;
+}

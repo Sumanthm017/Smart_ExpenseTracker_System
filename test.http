@@ -1,0 +1,38 @@
+### Register a new user
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser3",
+  "password": "123456"
+}
+
+### Login with registered user
+POST http://localhost:5000/auth/login
+Content-Type:application/json
+
+{
+  "username":"testuser3",
+  "password":"123456"
+}
+
+> {% client.global.set("auth_token", response.body.token) %}
+
+### Add a new expense
+POST http://localhost:5000/expenses
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "title": "Groceries",
+  "amount": 500,
+  "category": "Food"
+}
+
+### Get all expenses
+GET http://localhost:5000/expenses
+Authorization: Bearer {{auth_token}}
+
+### Delete an expense
+DELETE http://localhost:5000/expenses/<expense_id>
+Authorization: Bearer {{auth_token}}
